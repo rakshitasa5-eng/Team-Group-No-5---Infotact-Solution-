@@ -1,4 +1,13 @@
 # SaaS/E-Commerce Cohort Retention & CLTV Analysis
 
-This project focuses on analyzing customer retention and Customer Lifetime Value (CLTV) using cohort analysis techniques. The objective is to understand user behavior after acquisition, identify churn patterns, and evaluate the long-term value of different customer segments. A cohort retention matrix was used to track how many users remained active over time, while retention heatmaps and retention decay curves provided clear visual insights into customer engagement trends. Historical CLTV was calculated using key business metrics such as Average Order Value (AOV) and Purchase Frequency. The analysis revealed critical retention drop-off points and highlighted opportunities for improving customer loyalty through targeted engagement strategies. These insights can help product managers improve user stickiness and enable finance teams to make data-driven decisions regarding customer acquisition costs and revenue forecasting.
-# Team Project
+# Visualization and Strategic Insights
+
+This analysis presents customer retention patterns and lifetime value metrics through visualizations designed to support business decision-making. The cohort retention matrix was transformed into a retention heatmap to clearly illustrate how customer engagement changes over time across different acquisition cohorts. The heatmap highlights retention percentages for each cohort and helps identify periods with significant customer drop-off.
+
+Retention decay curves were created to visualize the rate at which customers churn over successive months after acquisition. These line charts provide a clear view of retention trends and make it easier to compare the performance of different customer cohorts.
+
+Customer Lifetime Value (CLTV) results were also visualized to compare revenue contribution across customer segments. By combining retention and revenue insights, the analysis identifies customer groups that generate the highest long-term value and those that are most susceptible to churn.
+
+The visual findings were used to derive actionable business recommendations. Cohorts with lower retention rates indicate opportunities for targeted engagement campaigns, onboarding improvements, or product enhancements. High-value customer segments can be prioritized for retention initiatives, while segments with lower lifetime value may require adjustments to acquisition and marketing strategies.
+
+The final deliverables include retention heatmaps, retention trend visualizations, CLTV comparisons, and strategic recommendations that help stakeholders better understand customer behavior, improve retention performance, and maximize long-term revenue growth.

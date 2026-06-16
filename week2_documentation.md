@@ -30,3 +30,7 @@ cleaned_ravenstack_subscriptions.csv
 ## Business Goal
 
 Identify when customers are most likely to churn and determine long-term retention patterns.
+
+
+
+

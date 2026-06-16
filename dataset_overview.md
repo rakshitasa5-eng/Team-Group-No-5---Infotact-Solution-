@@ -41,6 +41,6 @@ These datasets will be used for:
 * Customer Lifetime Value (CLTV) Calculation
 * Customer Segmentation
 
-## Documentation Note
+Documentation Note
 
 This document provides an overview of the datasets used in the project and explains how they support the analytical workflow.

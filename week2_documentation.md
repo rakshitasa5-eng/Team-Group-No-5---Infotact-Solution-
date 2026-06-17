@@ -31,6 +31,39 @@ cleaned_ravenstack_subscriptions.csv
 
 Identify when customers are most likely to churn and determine long-term retention patterns.
 
+## Day 3 - Cohort Retention Matrix Planning
 
 
+### Objective
 
+The objective of Week 2 is to build a Cohort Retention Matrix using subscription data and analyze customer retention patterns over time.
+
+### Dataset Used
+
+* cleaned_ravenstack_subscriptions.csv
+
+### Key Fields Required
+
+* account_id
+* start_date
+* cohortMonth
+* churn_flag
+
+### Expected Deliverables
+
+* Cohort Retention Matrix
+* Retention Percentage Table
+* Retention Heatmap
+* Retention Insights
+
+### Cohort Analysis Approach
+
+1. Group customers by their first subscription month.
+2. Track customer activity across subsequent months.
+3. Measure how many customers remain active in each period.
+4. Calculate retention percentages for every cohort.
+5. Visualize retention trends using a heatmap.
+
+### Business Value
+
+Cohort analysis helps identify customer retention trends and highlights periods where customer drop-off is highest. These insights support customer success, product, and revenue growth decisions.

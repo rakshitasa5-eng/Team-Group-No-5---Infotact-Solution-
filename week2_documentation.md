@@ -67,3 +67,11 @@ The objective of Week 2 is to build a Cohort Retention Matrix using subscription
 ### Business Value
 
 Cohort analysis helps identify customer retention trends and highlights periods where customer drop-off is highest. These insights support customer success, product, and revenue growth decisions.
+
+## Day 4 - Dataset Validation
+
+### Validation Findings
+
+- Total subscription records: 5000
+- Unique customer accounts: 500
+- Dataset supports cohort retention analysis because accounts appear across multiple subscription records.

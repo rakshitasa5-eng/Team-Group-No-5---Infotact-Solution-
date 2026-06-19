@@ -75,3 +75,26 @@ Cohort analysis helps identify customer retention trends and highlights periods 
 - Total subscription records: 5000
 - Unique customer accounts: 500
 - Dataset supports cohort retention analysis because accounts appear across multiple subscription records.
+
+## Day 5 - Cohort Retention Logic
+### Retention Logic
+
+The cohort retention process will use customer subscription history to measure how long customers remain active after their initial subscription month.
+
+### Cohort Definition
+
+Customers will be grouped based on their first subscription month using the `cohortMonth` field.
+
+### Retention Tracking
+
+Retention will be measured by tracking repeated subscription activity for each `account_id` across multiple records.
+
+### Core Metrics
+
+* Number of active customers per cohort
+* Monthly retention percentages
+* Customer drop-off trends over time
+
+### Expected Output
+
+The final output will include a Cohort Retention Matrix and retention percentage analysis for business insights.

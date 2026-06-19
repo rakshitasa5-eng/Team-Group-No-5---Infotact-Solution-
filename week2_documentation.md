@@ -1,4 +1,4 @@
-# Week 2 Documentation – Cohort Retention Analysis
+# Week 2 Documentation – Cohort Retention Matrix Development
 
 ---
 
@@ -6,11 +6,11 @@
 
 ## Objective
 
-During Day 1, the team initiated Week 2 activities by defining the objectives and analytical goals for cohort retention analysis.
+The objective of Week 2 was to develop a Cohort Retention Matrix to analyze customer retention behavior over multiple monthly periods.
 
-The primary objective was to build a Cohort Retention Matrix using customer subscription data and evaluate customer retention behavior over time.
+The team focused on understanding how long customers remained active after their initial subscription and identifying periods where customer churn became significant.
 
-The team focused on understanding how customer activity changes after acquisition and identifying periods where customer churn becomes significant.
+The retention analysis was planned using customer subscription data from the SaaS platform.
 
 ---
 
@@ -20,10 +20,10 @@ The following goals were finalized for Week 2:
 
 * Build a Cohort Retention Matrix
 * Calculate monthly retention percentages
-* Analyze customer retention patterns
-* Identify churn periods
-* Create retention visualizations
-* Generate business insights from retention trends
+* Track customer activity across monthly periods
+* Identify customer churn patterns
+* Prepare retention visualization structures
+* Generate retention-based business insights
 
 ---
 
@@ -33,34 +33,32 @@ The analysis was conducted using the following dataset:
 
 `cleaned_ravenstack_subscriptions.csv`
 
-The dataset contains customer subscription history and activity records required for retention analysis.
+The dataset contains customer subscription history and activity records required for cohort analysis and retention tracking.
 
 ---
 
-## Business Goal
+## Business Objective
 
-The business objective of the retention analysis was to identify customer engagement trends and determine the periods where customers are most likely to discontinue their subscriptions.
+The business objective of the retention analysis was to identify customer engagement patterns and determine the stages where customers are most likely to discontinue their subscriptions.
 
-The findings are expected to support customer retention strategies, revenue growth planning, and product engagement improvements.
+The analysis supports customer retention planning, product engagement improvement, and long-term subscription growth strategies.
 
 ---
 
 # Day 2 – Cohort Analysis Research and Framework Design
 
-## Cohort Analysis Concept
+## Understanding Cohort Analysis
 
-On Day 2, the team researched cohort analysis methodologies and finalized the cohort grouping strategy.
+On Day 2, the team researched cohort analysis methodologies and finalized the framework required for retention tracking.
 
-A cohort was defined as a group of customers who subscribed during the same month.
+A cohort was defined as a group of customers who subscribed during the same acquisition month.
 
-Customers were grouped according to their first subscription month to measure retention behavior consistently across different acquisition periods.
-
-Example:
+For example:
 
 * Customers who subscribed in January formed the January cohort.
 * Customers who subscribed in February formed the February cohort.
 
-This approach enabled retention comparison between multiple customer groups.
+This approach allowed customer retention behavior to be compared across multiple acquisition periods.
 
 ---
 
@@ -68,24 +66,24 @@ This approach enabled retention comparison between multiple customer groups.
 
 The team identified several advantages of cohort analysis:
 
-* Helps measure long-term customer retention
-* Detects customer churn trends
-* Tracks engagement over time
+* Measures long-term customer retention
+* Identifies churn trends over time
+* Tracks customer engagement behavior
 * Supports customer lifecycle analysis
 * Provides deeper insights than overall retention averages
 
-The cohort methodology was selected because it provides a more accurate understanding of customer behavior patterns.
+Cohort analysis was selected because it provides a clearer understanding of how customer behavior changes after acquisition.
 
 ---
 
 ## Planned Outputs
 
-The following outputs were finalized during the planning phase:
+The following outputs were planned during the framework design phase:
 
 * Cohort Retention Matrix
 * Monthly Retention Percentage Table
-* Retention Heatmap
 * Retention Trend Analysis
+* Retention Heatmap Structure
 
 ---
 
@@ -93,53 +91,54 @@ The following outputs were finalized during the planning phase:
 
 ## Objective
 
-The objective of Day 3 was to finalize the technical structure of the cohort retention matrix and identify the fields required for retention calculations.
+The objective of Day 3 was to finalize the structure of the cohort retention matrix and identify the dataset fields required for retention calculations.
 
 ---
 
-## Key Fields Used
+## Key Fields Selected
 
-The following dataset columns were selected for analysis:
+The following fields from the subscription dataset were selected for analysis:
 
 | Field Name  | Purpose                        |
 | ----------- | ------------------------------ |
 | account_id  | Unique customer identification |
 | start_date  | Subscription start date        |
-| cohortMonth | Customer cohort assignment     |
+| cohortMonth | Customer acquisition month     |
 | churn_flag  | Customer churn indicator       |
 
-These fields were essential for tracking customer activity and retention behavior across multiple periods.
+These fields were required to track customer retention behavior across different monthly periods.
 
 ---
 
-## Retention Metrics
+## Retention Metrics Planned
 
-The team finalized the following retention metrics for analysis:
+The following retention metrics were planned:
 
 * Month 0 Retention
 * Month 1 Retention
 * Month 2 Retention
 * Month 3 Retention
 
-Retention percentages were calculated to measure how many customers remained active after their initial subscription month.
+Retention percentages were used to measure how many customers remained active after their acquisition month.
 
 ---
 
-## Visualization Planning
+## Technical Planning
 
-The visualization structure for the retention analysis was also planned.
+The retention matrix structure was planned using Pandas-based data manipulation techniques.
 
-The analysis outputs included:
+The analysis workflow included:
 
-* Cohort Matrix
-* Retention Percentage Charts
-* Retention Heatmap
+* Grouping customers using `groupby()`
+* Organizing retention data using `pivot_table()`
+* Tracking customer activity across monthly periods
+* Calculating retention percentages for each cohort
 
-These visualizations were designed to improve the interpretation of retention trends and customer drop-off behavior.
+These operations were required to generate the cohort retention matrix.
 
 ---
 
-# Day 4 – Dataset Validation
+# Day 4 – Dataset Validation and Retention Preparation
 
 ## Objective
 
@@ -149,7 +148,7 @@ The objective of Day 4 was to validate the subscription dataset and confirm that
 
 ## Validation Findings
 
-The validation process produced the following findings:
+The validation process produced the following results:
 
 | Validation Metric          | Result |
 | -------------------------- | ------ |
@@ -165,27 +164,27 @@ The dataset contained multiple subscription records for customer accounts, enabl
 The dataset structure successfully supported:
 
 * Cohort assignment
-* Monthly activity tracking
-* Retention calculations
-* Churn analysis
+* Monthly retention tracking
+* Customer activity analysis
+* Retention percentage calculations
 
 No major structural issues or missing field dependencies were identified during validation.
 
-The validation process confirmed that the dataset was suitable for retention analysis and visualization.
+The dataset was confirmed to be suitable for cohort analysis implementation.
 
 ---
 
-# Day 5 – Cohort Retention Logic Development
+# Day 5 – Retention Logic Development
 
 ## Objective
 
-The objective of Day 5 was to define the retention calculation logic and establish the customer tracking methodology.
+The objective of Day 5 was to define the retention calculation methodology and establish the customer tracking logic.
 
 ---
 
 ## Retention Logic
 
-The retention analysis used customer subscription history to measure how long customers remained active after their initial subscription month.
+The retention analysis used customer subscription history to measure how long customers remained active after their first subscription month.
 
 Customer activity was tracked across multiple monthly periods to evaluate long-term retention behavior.
 
@@ -193,129 +192,129 @@ Customer activity was tracked across multiple monthly periods to evaluate long-t
 
 ## Cohort Definition
 
-Customers were assigned to cohorts based on their first subscription month using the `cohortMonth` field.
+Customers were grouped into cohorts based on their first subscription month using the `cohortMonth` field.
 
-This allowed the team to analyze retention performance across different customer acquisition periods.
+This allowed retention performance to be compared across different customer acquisition periods.
 
 ---
 
-## Retention Tracking Process
+## Retention Tracking Methodology
 
-The retention tracking methodology included:
+The retention tracking process included the following steps:
 
-1. Identifying each customer's acquisition month
+1. Identifying each customer’s acquisition month
 2. Tracking repeated subscription activity
-3. Measuring active customer counts per period
+3. Measuring active customer counts per month
 4. Calculating monthly retention percentages
-5. Measuring customer drop-off trends
+5. Identifying customer drop-off trends
 
 ---
 
-## Core Metrics Generated
+## Core Metrics Planned
 
-The following metrics were generated during the analysis process:
+The following metrics formed the basis of the retention analysis:
 
 * Active customers per cohort
 * Monthly retention percentages
-* Churn trend analysis
+* Customer churn trends
 * Retention decay patterns
 
-These metrics formed the foundation of the final retention analysis.
+These metrics support the final retention analysis and business insight generation.
 
 ---
 
-# Day 6 – Heatmap and Retention Visualization
+# Day 6 – Retention Visualization Planning
 
 ## Objective
 
-The objective of Day 6 was to create retention visualizations and analyze cohort retention patterns using heatmap representations.
+The objective of Day 6 was to design the retention visualization structure and prepare the framework for retention heatmap generation.
 
 ---
 
-## Retention Heatmap
+## Retention Heatmap Structure
 
-A retention heatmap was developed to visualize customer retention behavior across different cohorts and monthly periods.
+The retention heatmap was designed to visualize customer retention behavior across multiple cohorts and monthly periods.
 
-The heatmap structure included:
+The structure included:
 
 * Rows representing customer cohorts
 * Columns representing retention periods
 * Retention percentages displayed as values
 
-This visualization made it easier to identify retention trends and periods of significant customer churn.
+The heatmap structure improves the interpretation of customer retention and churn trends.
 
 ---
 
-## Retention Insights
+## Expected Retention Insights
 
-The heatmap analysis highlighted several important retention patterns:
+The planned visualization analysis was expected to help identify:
 
-* Early-stage customer drop-off was visible across multiple cohorts
-* Certain cohorts demonstrated stronger long-term retention behavior
-* Retention percentages gradually declined over time for most customer groups
+* Early-stage customer drop-off
+* Stronger-performing cohorts
+* Long-term retention behavior
+* Monthly retention decline patterns
 
-The visualization helped identify areas where customer engagement improvements may be required.
+These findings are important for customer engagement improvement strategies.
 
 ---
 
 ## Business Importance
 
-The retention visualization improved the ability to communicate customer behavior trends and provided actionable insights for customer success and product strategy teams.
+The retention visualization framework supports better communication of customer behavior trends and assists product strategy and customer success teams in identifying retention improvement opportunities.
 
 ---
 
-# Day 7 – Week 2 Summary and Findings
+# Day 7 – Week 2 Summary
 
 ## Week 2 Activities Completed
 
-During Week 2, the team successfully completed the following tasks:
+During Week 2, the team successfully completed the following activities:
 
 * Planned the cohort retention analysis framework
 * Defined retention metrics
 * Validated the subscription dataset
-* Developed retention tracking logic
-* Created retention visualization structures
-* Analyzed retention trends using cohort methodology
+* Designed the cohort retention logic
+* Planned the retention matrix structure
+* Prepared retention visualization frameworks
 
 ---
 
-## Final Deliverables Completed
+## Planned Deliverables
 
-The following outputs were completed during Week 2:
+The following deliverables were planned and partially developed during Week 2:
 
 * Cohort Retention Matrix
 * Retention Percentage Table
-* Retention Heatmap
+* Retention Heatmap Structure
 * Retention Trend Analysis
-* Initial Business Insights
 
 ---
 
-## Business Findings
+## Business Findings and Expectations
 
-The cohort analysis revealed valuable insights into customer retention behavior.
+The retention analysis framework is expected to provide insights into customer retention behavior and churn patterns.
 
-Key observations included:
+Expected observations include:
 
-* Customer retention declined gradually across monthly periods
-* Certain customer cohorts retained users more effectively than others
-* Early customer churn was identified as a major business concern
-* Retention patterns varied across acquisition periods
+* Gradual decline in customer retention across monthly periods
+* Identification of high-retention customer cohorts
+* Detection of early-stage customer churn
+* Retention variation across acquisition periods
 
-These findings provided important insights for improving customer retention strategies and long-term subscription performance.
+These findings are expected to support customer retention improvement and long-term subscription growth strategies.
 
 ---
 
 ## Overall Business Value
 
-The Week 2 retention analysis helped the team better understand customer lifecycle behavior and churn patterns.
+The Week 2 retention analysis established a strong analytical foundation for future project phases, including CLTV calculation and advanced customer segmentation.
 
-The analysis supports future business decisions related to:
+The retention analysis supports future business decisions related to:
 
-* Customer retention improvement
-* Product engagement optimization
-* Subscription growth strategies
+* Customer retention optimization
+* Product engagement improvement
+* Subscription growth planning
 * Revenue forecasting
-* Customer success initiatives
+* Customer success strategies
 
-The completion of Week 2 established a strong analytical foundation for the advanced business insights and segmentation analysis planned for subsequent project phases.
+The successful completion of Week 2 prepared the project for the Week 3 CLTV analysis phase.

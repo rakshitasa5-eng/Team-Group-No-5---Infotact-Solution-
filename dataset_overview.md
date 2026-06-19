@@ -27,10 +27,10 @@ This document describes the datasets used in the SaaS Cohort Retention and Custo
 All datasets are connected using a common customer/account identifier.
 
 Accounts
-├── Subscriptions
-├── Churn Events
-├── Feature Usage
-└── Support Tickets
+>Subscriptions
+>Churn Events
+>Feature Usage
+>Support Tickets
 
 ## Project Usage
 

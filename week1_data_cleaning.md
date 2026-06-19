@@ -1,23 +1,27 @@
-Started 1st Week Project - SaaS subscription dataset
+## Data Cleaning Summary
 
-Step 1: Load Dataset
+### Cleaning Activities Performed
 
-  import pandas as pd
-  
-  import os
-    print(os.getcwd())
-    
-  df = pd.read_csv(r"C:\Users\raksh\Downloads\Infotect Project 2026\ravenstack_subscriptions.csv")
-    df.head()
+The datasets were cleaned and standardized before analysis to improve consistency and data quality.
 
-step 2: Explore Dataset
+### Tasks Completed
 
-  df.info()
-  
-  df.shape
+* Removed duplicate records
+* Standardized column formatting
+* Validated date fields
+* Checked for missing values
+* Verified customer account identifiers
+* Standardized churn indicators
+* Prepared datasets for cohort and retention analysis
 
-Step 3: Check Missing Values
+### Datasets Cleaned
 
-  df.isnull().sum()
-  
-  df = df.dropna(subset=['account_id'])  # Removing Missing Account IDs
+* cleaned_ravenstack_accounts.csv
+* cleaned_ravenstack_subscriptions.csv
+* cleaned_ravenstack_churn_events.csv
+* cleaned_ravenstack_feature_usage.csv
+* cleaned_ravenstack_support_tickets.csv
+
+### Outcome
+
+The cleaned datasets are now ready for retention analysis, churn analysis, customer segmentation, and business insight generation.

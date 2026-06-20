@@ -1,0 +1,73 @@
+# CSV Data Cleaning & Validation using SQL (MySQL)
+
+## 📌 Project Overview
+This project checks and validates raw CSV/Excel files using SQL queries in 
+MySQL to ensure data quality before analysis. Each file is loaded into a 
+MySQL database, tested against common data-quality rules, fixed where 
+needed, and verified as clean.
+
+## 🛠️ Tools Used
+- MySQL 8.0
+- MySQL Workbench
+
+## ✅ Files Checked
+
+### 1. tickets.csv — 2,000 rows
+No issues found. Checked NULLs, duplicate IDs, invalid dates, negative 
+values, valid categorical fields.
+
+### 2. Cleaned_accounts.csv — 500 rows
+No issues found. Checked NULLs, duplicate IDs, blank fields, invalid 
+seat counts, valid industry/country/plan values.
+
+### 3. cleaned_churn_events.csv — 600 rows
+No issues found. Checked NULLs, duplicate IDs, referential integrity 
+against accounts table, negative refunds, valid reason codes.
+
+### 4. cleaned_feature_usage.csv — 25,000 rows
+**Issues found and fixed:**
+- 21 duplicate `usage_id` values (42 rows) → renamed second occurrence 
+  with `-dup` suffix using ROW_NUMBER()
+- 17 rows where `error_count` exceeded `usage_count` → capped 
+  `error_count` to match `usage_count`
+
+### 5. cleaned_ravenstack_subscriptions.csv (originally .xlsx) — 5,000 rows
+Converted from Excel to CSV before loading. Dates were in DD-MM-YYYY 
+format and required conversion to standard YYYY-MM-DD. No data quality 
+issues found after date conversion.
+
+### 6. cleaned_subscriptions.csv — 5,000 rows
+No data quality issues found. **Note: this file contains the same 
+5,000 subscription records as cleaned_ravenstack_subscriptions.csv, 
+just exported in a different format/date convention.** Kept both 
+files for reference, but they represent one dataset, not two.
+
+## 🔍 Data Quality Checks Performed
+- Missing values (NULL check)
+- Duplicate primary keys
+- Logical inconsistencies (e.g., end date before start date, 
+  errors exceeding usage count)
+- Negative or invalid numeric values
+- Category value consistency (typos, casing, unexpected values)
+- Date/month format consistency
+- Cross-file referential integrity (e.g., orphaned account IDs)
+- Cross-file duplicate detection (subscriptions vs ravenstack_subscriptions)
+
+## 📂 Folder Structure
+- `raw/` — original files before cleaning (CSV and Excel)
+- `sql/` — SQL scripts for table creation, loading, validation, and fixes
+- `cleaned/` — verified clean CSV exports from MySQL
+
+## 🚀 How To Run
+1. Create the database: `CREATE DATABASE csv_cleaning;`
+2. Run the table creation + load scripts in `sql/`
+3. Run the validation queries to confirm data quality
+4. Apply fix scripts where issues were found
+5. Export verified clean data using `SELECT ... INTO OUTFILE`
+
+## 📈 Key Learnings
+- Always check raw text data before assuming numeric/date columns
+- Excel-exported dates often use DD-MM-YYYY vs CSV's YYYY-MM-DD
+- Empty fields and the literal text "null" require different handling
+- Cross-file checks (duplicates, referential integrity) catch issues 
+  single-file checks miss

@@ -1,0 +1,12 @@
+Cohort Retention & CLTV Analysis Summary
+
+Total Customers: 500
+Total Subscriptions: 5000
+Average CLTV: 22677.494
+Highest CLTV: 138060.0
+
+Key Insights:
+- Retention decreases over time across cohorts.
+- Some plan tiers generate higher CLTV.
+- Early churn impacts long-term retention.
+- High-value customers contribute significantly to revenue.

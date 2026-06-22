@@ -97,14 +97,70 @@ The project utilizes the following RavenStack SaaS datasets:
 
 ---
 
-## Next Steps (Week 2)
+# Week 2: Cohort Retention Analysis
 
+## Project Overview
+
+The objective of Week 2 was to build the cohort analysis framework and measure customer retention over time using the RavenStack SaaS subscription dataset. This analysis helps identify customer retention patterns, churn behavior, and long-term engagement trends.
+
+---
+
+## Week 2 Objectives
 * Create Subscription Month feature.
-* Calculate Cohort Index.
+* Calculate Cohort Index for each customer.
 * Build Cohort Retention Matrix.
-* Compute monthly retention percentages.
+* Calculate monthly retention percentages.
 * Generate Cohort Retention Heatmap.
-* Analyze customer retention trends across cohorts.
+* Prepare datasets for churn and CLTV analysis.
+
+
+## Tasks Performed
+### 1. Created Subscription Month
+* Extracted the subscription month from the start date.
+* Converted dates into monthly periods for cohort tracking.
+### 2. Calculated Cohort Index
+* Measured the number of months between customer acquisition and subscription activity.
+* Assigned a Cohort Index value for retention analysis.
+### 3. Built Cohort Retention Matrix
+* Grouped customers by CohortMonth and CohortIndex.
+* Calculated unique customer counts for each cohort period.
+* Created a customer retention count matrix.
+### 4. Calculated Retention Rates
+* Converted retention counts into percentage values.
+* Measured monthly retention performance across cohorts.
+* Generated the retention percentage matrix.
+### 5. Generated Retention Heatmap
+* Visualized retention trends using a heatmap.
+* Identified high-retention and low-retention customer cohorts.
+* Highlighted customer drop-off patterns over time.
+
+
+## Deliverables
+* master_subscription_data.csv
+* cohort_framework_data.csv
+* cohort_retention_matrix.csv
+* retention_percentage_matrix.csv
+* retention_heatmap.png
+* Week 2 Analysis Notebook
+
+---
+
+## Key Outcomes
+* Successfully developed the cohort analysis framework.
+* Measured customer retention across multiple monthly cohorts.
+* Identified retention trends and churn patterns.
+* Generated visual insights for business decision-making.
+* Prepared data foundation for Customer Lifetime Value (CLTV) analysis.
+
+---
+
+## Next Steps (Week 3)
+
+* Analyze churn behavior using churn event data.
+* Calculate Customer Lifetime Value (CLTV).
+* Segment customers by retention and revenue contribution.
+* Generate churn and CLTV dashboards.
+* Develop business recommendations.
 
 ---
 
@@ -116,7 +172,8 @@ The project utilizes the following RavenStack SaaS datasets:
 
 ## Status
 
-✅ Week 1 Completed Successfully (15 June 2026)
+✅ Week 2 Completed Successfully (15 Jun – 22 Jun)
 
-🚀 Ready for Week 2: Cohort Retention Matrix Development
+
+🚀 Ready for Week 3: Customer Lifetime Value (CLTV) Calculation
 

@@ -1,0 +1,48 @@
+DATA QUALITY AUDIT
+
+print(accounts['seats'].min())
+print(accounts['seats'].max())
+accounts['seats'].describe()
+>     1
+      163
+      count    500.000000
+      mean      20.560000
+      std       21.044718
+      min        1.000000
+      25%        5.000000
+      50%       15.000000
+      75%       28.000000
+      max      163.000000
+      Name: seats, dtype: float64
+
+print(subscriptions['mrr_amount'].min())
+print(subscriptions['mrr_amount'].max())
+subscriptions['mrr_amount'].describe()
+>     0
+      33830
+      count     5000.000000
+      mean      2267.749400
+      std       3421.375348
+      min          0.000000
+      25%        285.000000
+      50%        931.000000
+      75%       2786.000000
+      max      33830.000000
+      Name: mrr_amount, dtype: float64
+
+accounts['account_id'].duplicated().sum()
+>     np.int64(0)
+
+DOCUMENTED
+Seats:
+    > Minimum = 1
+    > Maximum = 163
+    > No invalid seat values found.
+MRR Amount:
+    > Minimum = 29
+    > No negative revenue values found.
+Duplicate Account IDs:
+    > 0 duplicates detected.
+
+Conclusion:
+The cleaned datasets passed the data quality audit and are suitable for further churn analysis and Customer Lifetime Value (CLTV) calculations.

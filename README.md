@@ -154,13 +154,120 @@ The objective of Week 2 was to build the cohort analysis framework and measure c
 
 ---
 
-## Next Steps (Week 3)
+# Week 3: Data Validation and Quality Audit
 
-* Analyze churn behavior using churn event data.
+## Project Overview
+
+The objective of Week 3 was to validate the cleaned datasets before proceeding with advanced business analysis such as Customer Lifetime Value (CLTV) and churn analysis. Data validation ensures that the cleaned datasets are accurate, complete, and suitable for reliable analytical results.
+
+---
+
+## Week 3 Objectives
+
+* Verify the integrity of all cleaned datasets.
+* Confirm row and column counts against the project documentation.
+* Check for duplicate account IDs.
+* Validate missing values in important columns.
+* Audit numerical fields for unrealistic values and outliers.
+* Document validation findings and prepare datasets for the next phase of analysis.
+
+---
+
+## Datasets Validated
+
+* cleaned_ravenstack_accounts.csv
+* cleaned_ravenstack_subscriptions.csv
+* cleaned_churn_events.csv
+* cleaned_feature_usage.csv
+* cleaned_support_tickets.csv
+
+---
+
+## Data Validation Activities
+
+### 1. Dataset Verification
+
+* Loaded all cleaned datasets into Jupyter Notebook using Pandas.
+* Verified dataset dimensions using the `.shape` function.
+* Confirmed that row and column counts matched the project documentation.
+
+### 2. Duplicate Record Validation
+
+* Checked for duplicate `account_id` values in the Accounts dataset.
+* Verified that each customer account is unique.
+
+**Result**
+
+* Duplicate Account IDs Found: **0**
+
+### 3. Missing Value Validation
+
+Validated important business columns including:
+
+* signup_date
+* seats
+* subscription records
+
+Missing values were reviewed to determine whether they represented valid business scenarios (such as active subscriptions without an end date).
+
+### 4. Data Quality Audit
+
+Performed quality checks on important numerical fields.
+
+#### Seats Validation
+
+* Minimum Seats: **1**
+* Maximum Seats: **163**
+
+Result:
+
+* No unrealistic seat values detected.
+
+#### Monthly Recurring Revenue (MRR) Validation
+
+* Minimum MRR: **0**
+* Maximum MRR: **33830**
+
+Result:
+
+* No negative revenue values were found.
+* Zero MRR values correspond to trial or non-billed subscriptions and are considered valid.
+
+### 5. Validation Findings
+
+* Dataset dimensions verified successfully.
+* No duplicate customer accounts detected.
+* No critical missing values found.
+* Numerical values fall within acceptable business ranges.
+* Cleaned datasets passed all validation checks.
+
+---
+
+## Deliverables
+
+* data_validation_report.md
+* week3_validation_checks.ipynb
+* Updated project documentation
+* GitHub commits for validation and quality audit
+
+---
+
+## Key Outcomes
+
+* Successfully verified data integrity across all cleaned datasets.
+* Confirmed dataset consistency before CLTV calculations.
+* Improved confidence in the reliability of retention and revenue analysis.
+* Established a validated foundation for Week 4 visualization and business insights.
+
+---
+
+## Next Steps (Week 4)
+
 * Calculate Customer Lifetime Value (CLTV).
-* Segment customers by retention and revenue contribution.
-* Generate churn and CLTV dashboards.
-* Develop business recommendations.
+* Build business dashboards and visualizations.
+* Generate retention and churn insights.
+* Develop strategic business recommendations.
+* Finalize project documentation and presentation.
 
 ---
 
@@ -172,8 +279,8 @@ The objective of Week 2 was to build the cohort analysis framework and measure c
 
 ## Status
 
-✅ Week 2 Completed Successfully (15 Jun – 22 Jun)
+✅ Week 3 Completed Successfully (22 Jun – 28 Jun)
 
 
-🚀 Ready for Week 3: Customer Lifetime Value (CLTV) Calculation
+🚀 Ready for Week 4: Visualization and Strategic Insights
 

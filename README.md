@@ -1,9 +1,9 @@
 # SaaS/E-Commerce Cohort Retention & CLTV Analysis
 
-````markdown
-# 📊 Week 4 – Visualization & Strategic Insights
+```markdown
+# 📊 Week 4: Visualization & Strategic Insights
 
-## 🚀 Project
+## 🚀 Project Title
 
 **SaaS / E-Commerce Cohort Retention & Customer Lifetime Value (CLTV) Analysis**
 
@@ -11,48 +11,54 @@
 
 # 📌 Overview
 
-Week 4 focuses on transforming analytical outputs into meaningful business insights through data visualization and storytelling.
+Week 4 marks the final phase of the project, where analytical findings from the previous weeks are transformed into meaningful business insights through data visualization and storytelling.
 
-Using **Python**, **Matplotlib**, and **Seaborn**, this phase presents customer retention patterns, cohort performance, and customer value through professional visualizations that support business decision-making.
+Using **Python**, **Matplotlib**, and **Seaborn**, interactive and informative visualizations were created to analyze customer retention, cohort performance, customer lifetime value (CLTV), and subscription plan performance. These visualizations help stakeholders understand customer behavior and make data-driven business decisions.
 
 ---
 
 # 🎯 Objectives
 
-The objectives of this module are to:
+The objectives of Week 4 were to:
 
-- Visualize customer retention across different cohorts.
-- Analyze retention decay over time.
-- Identify the highest-performing customer cohorts.
-- Analyze Customer Lifetime Value (CLTV) by subscription plan.
+- Create professional business visualizations.
+- Analyze customer retention across different cohorts.
+- Visualize monthly retention decay trends.
+- Identify top-performing customer cohorts.
+- Analyze Customer Lifetime Value (CLTV) across subscription plans.
+- Evaluate retention performance by plan tier.
 - Convert analytical findings into actionable business recommendations.
-- Prepare visualization outputs for dashboards and executive reporting.
+- Present insights through clear and effective data storytelling.
 
 ---
 
 # ✅ Work Completed
 
-The following tasks were completed during Week 4:
+The following tasks were successfully completed:
 
-- Imported processed datasets from previous project phases.
+- Imported processed datasets generated during Weeks 1–3.
 - Performed data validation before visualization.
 - Configured visualization environment using Matplotlib and Seaborn.
-- Generated multiple business visualizations.
-- Applied professional chart formatting and annotations.
-- Organized the notebook with clean, reproducible Python code.
+- Generated a Cohort Retention Heatmap.
+- Created a Monthly Retention Decay Curve.
+- Visualized Top Performing Customer Cohorts.
+- Analyzed High-Value Customers (CLTV by Plan Tier).
+- Visualized Customer Retention by Subscription Plan.
+- Applied professional chart formatting, annotations, and labels.
+- Organized the notebook into a clean, modular, and reproducible workflow.
 
 ---
 
 # 📂 Datasets Used
 
-The visualizations were created using the following processed datasets:
+The following datasets were used for visualization:
 
-- retention_percentage_matrix.csv
-- monthly_retention.csv
-- top_cohorts.csv
-- high_value_customers.csv
-- processed_cohort_data.csv
-- master_subscription_data.csv
+- Master Subscription Data
+- Processed Cohort Data
+- Monthly Retention Data
+- Retention Percentage Matrix
+- Top Cohorts Data
+- High Value Customers Data
 
 ---
 
@@ -66,9 +72,9 @@ Visualize customer retention percentages across monthly cohorts.
 
 **Business Value**
 
-- Compare cohort performance.
-- Identify retention trends.
-- Detect customer churn patterns.
+- Compare customer retention between cohorts.
+- Identify high-retention customer groups.
+- Detect early churn patterns.
 
 ---
 
@@ -76,13 +82,13 @@ Visualize customer retention percentages across monthly cohorts.
 
 **Purpose**
 
-Track customer retention over time.
+Track how customer retention changes over time.
 
 **Business Value**
 
-- Measure retention decline.
-- Identify months with the highest customer loss.
-- Monitor long-term customer engagement.
+- Measure customer churn.
+- Monitor long-term engagement.
+- Identify periods with the greatest customer loss.
 
 ---
 
@@ -90,13 +96,13 @@ Track customer retention over time.
 
 **Purpose**
 
-Compare customer cohorts based on average retention.
+Identify customer cohorts with the highest average retention.
 
 **Business Value**
 
-- Identify the strongest customer cohorts.
-- Understand successful acquisition periods.
-- Improve future marketing strategies.
+- Evaluate successful acquisition periods.
+- Support future marketing strategies.
+- Improve customer acquisition decisions.
 
 ---
 
@@ -104,39 +110,51 @@ Compare customer cohorts based on average retention.
 
 **Purpose**
 
-Analyze Customer Lifetime Value across subscription plans.
+Compare Customer Lifetime Value across subscription plans.
 
 **Business Value**
 
 - Identify premium customer segments.
-- Compare revenue contribution by plan tier.
+- Analyze revenue contribution by plan tier.
 - Support pricing and upselling strategies.
+
+---
+
+## 📊 5. Customer Retention by Plan Tier
+
+**Purpose**
+
+Evaluate retention performance across subscription plans.
+
+**Business Value**
+
+- Compare churn rates between plans.
+- Improve subscription offerings.
+- Develop targeted retention campaigns.
 
 ---
 
 # 🛠️ Technologies Used
 
-| Technology | Purpose |
-|------------|---------|
-| Python | Data Analysis |
-| Pandas | Data Processing |
-| NumPy | Numerical Operations |
-| Matplotlib | Visualization |
-| Seaborn | Statistical Visualization |
-| Jupyter Notebook | Interactive Development |
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
 
 ---
 
-# 📊 Business Insights
+# 📊 Key Business Insights
 
 The analysis revealed several important findings:
 
 - Customer retention is highest immediately after acquisition.
-- Retention gradually decreases over subsequent months.
-- Some cohorts consistently outperform others.
+- Retention declines steadily over subsequent months.
+- Certain customer cohorts consistently outperform others.
 - Premium subscription plans generate higher Customer Lifetime Value.
-- Early customer churn significantly impacts long-term revenue.
-- High-performing cohorts can be used as benchmarks for future customer acquisition strategies.
+- Customer churn increases significantly during the early lifecycle.
+- High-performing cohorts can serve as benchmarks for future acquisition strategies.
 
 ---
 
@@ -144,108 +162,90 @@ The analysis revealed several important findings:
 
 Based on the visual analysis, the following recommendations are proposed:
 
-### Improve Early Customer Retention
+### Improve Customer Onboarding
 
-If retention decreases rapidly during the first two months:
+Implement:
 
-- Implement automated onboarding emails.
-- Offer guided product tutorials.
-- Provide welcome incentives.
+- Welcome email sequences
+- Product tutorials
+- Interactive onboarding
+- Customer success follow-ups
 
 ---
 
-### Launch Re-engagement Campaigns
+### Reduce Early Customer Churn
 
-When retention begins to decline:
+If retention decreases significantly after Month 2:
 
-- Personalized email campaigns
+- Automated re-engagement email campaigns
+- Personalized offers
 - Push notifications
-- Promotional offers
-- Feature update announcements
+- Product education campaigns
 
 ---
 
 ### Reward Loyal Customers
 
-Develop loyalty initiatives such as:
+Develop:
 
+- Loyalty programs
 - Premium memberships
 - Referral rewards
 - Exclusive discounts
-- Customer loyalty programs
 
 ---
 
 ### Focus on High-Value Customers
 
 - Prioritize premium subscribers.
-- Improve retention for high-value segments.
-- Develop personalized marketing campaigns.
+- Improve retention for high-value customer segments.
+- Offer personalized experiences.
 
 ---
 
 ### Build Executive Dashboards
 
-Monitor:
+Track:
 
-- Cohort Retention
+- Customer Retention
 - Monthly Churn
 - Customer Lifetime Value (CLTV)
-- Customer Segmentation
-- Retention Trends
+- Cohort Performance
+- Subscription Plan Performance
 
 ---
 
 # 📦 Deliverables
 
-- ✅ Week4_Visualization.ipynb
 - ✅ Cohort Retention Heatmap
-- ✅ Monthly Retention Trend Chart
-- ✅ Top Cohorts Visualization
-- ✅ High-Value Customer Visualization
+- ✅ Monthly Retention Decay Curve
+- ✅ Top Performing Cohorts Visualization
+- ✅ High-Value Customer (CLTV) Analysis
+- ✅ Customer Retention by Plan Tier
 - ✅ Business Insights
 - ✅ Strategic Recommendations
-- ✅ GitHub README
+- ✅ GitHub Documentation
 
 ---
 
 # 🎓 Learning Outcomes
 
-Through this task, I learned how to:
+This module helped me learn how to:
 
 - Build professional business visualizations.
-- Create retention heatmaps using Seaborn.
-- Develop trend analysis using Matplotlib.
-- Analyze Customer Lifetime Value (CLTV).
-- Convert analytical findings into business insights.
-- Perform data storytelling for stakeholders.
-
----
-
-# 📁 Repository Structure
-
-```text
-Week4/
-│
-├── week4_visualization.ipynb
-├── README.md
-├── images/
-│   ├── cohort_retention_heatmap.png
-│   ├── monthly_retention_curve.png
-│   ├── top_cohorts.png
-│   └── cltv_by_plan_tier.png
-└── datasets/
-```
+- Perform data storytelling.
+- Analyze customer retention trends.
+- Visualize Customer Lifetime Value.
+- Present insights for executive decision-making.
+- Convert analytical findings into actionable business recommendations.
 
 ---
 
 # 🏁 Conclusion
 
-Week 4 focused on transforming analytical outputs into compelling visual stories.
+Week 4 successfully transformed the analytical outputs from the previous phases into meaningful business insights through professional visualizations.
 
-Using **Matplotlib** and **Seaborn**, this phase produced a Cohort Retention Heatmap, Monthly Retention Trend, Top Cohort Analysis, and Customer Lifetime Value (CLTV) visualization. These visualizations provide actionable business insights into customer behavior, retention performance, churn trends, and customer value.
+Using **Matplotlib** and **Seaborn**, multiple charts were developed, including a Cohort Retention Heatmap, Monthly Retention Trend, Top Cohorts Analysis, Customer Lifetime Value (CLTV) by Plan Tier, and Retention by Plan Tier.
 
-The completed work supports executive reporting, dashboard development, and strategic decision-making to improve customer retention and long-term business growth.
-````
-for executive dashboards, business reporting, and Customer Lifetime Value (CLTV) analysis in the final stage of the project.
-````
+These visualizations provide valuable insights into customer behavior, retention performance, subscription effectiveness, and long-term customer value. The completed work supports executive reporting, dashboard development, and strategic business decision-making, completing the Cohort Retention & CLTV Analysis project.
+```

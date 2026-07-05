@@ -1,0 +1,16 @@
+Segment,Churned Customers,Category
+Basic,111,Plan Tier
+Enterprise,119,Plan Tier
+Pro,122,Plan Tier
+AU,22,Country
+CA,16,Country
+DE,14,Country
+FR,16,Country
+IN,33,Country
+UK,45,Country
+US,206,Country
+Cybersecurity,72,Industry
+DevTools,83,Industry
+EdTech,57,Industry
+FinTech,76,Industry
+HealthTech,64,Industry

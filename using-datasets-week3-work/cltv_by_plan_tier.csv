@@ -1,0 +1,4 @@
+plan_tier,avg_mrr,avg_purchase_freq,avg_lifespan_months,cltv
+Basic,474.68,3.34,21.78,34501.61
+Enterprise,4917.71,3.6,21.4,378493.54
+Pro,1256.77,3.53,21.55,95704.86

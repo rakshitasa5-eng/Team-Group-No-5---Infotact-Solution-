@@ -1,469 +1,239 @@
-1
 # Final — Project Documentation
-2
- 
-3
+
 **Prepared by:** Satyanarayan Baral — Data Analytics Intern, Infotact Solutions
-4
 **Duration:** Week 1 – Week 4 (1 month)
-5
 **Dataset scale:** 500 customer accounts • 5,000 subscription records • 2,000 support tickets • 600 churn events • 25,000 feature usage records
-6
- 
-7
+
 ---
-8
- 
-9
+
 ## 1. Project Summary
-10
- 
-11
+
 This project analyzes RavenStack's SaaS customer base end-to-end — from raw, messy CSV exports to a validated database, a full Customer Lifetime Value (CLTV) model, a cohort retention study, and a live Power BI support analytics dashboard — finishing with a business recommendation deck grounded entirely in the data.
-12
- 
-13
+
 The work was carried out in four weekly phases, each building on the previous one:
-14
- 
-15
+
 | Week | Focus | Tools |
-16
 |------|-------|-------|
-17
 | Week 1 | Data cleaning & validation | MySQL / SQL |
-18
 | Week 2 | Cohort retention analysis | Python (Pandas, Seaborn), Excel |
-19
 | Week 3 | Customer Lifetime Value (CLTV) analysis | Python (Pandas, Matplotlib, Seaborn) |
-20
 | Week 4 | Dashboard build + business storytelling | Power BI, Python, PowerPoint |
-21
- 
-22
+
 ---
-23
- 
-24
+
 ## 2. Week 1 — Data Cleaning with SQL
-25
- 
-26
+
 ### Objective
-27
 Raw exports (`accounts`, `subscriptions`, `ravenstack_subscriptions`, `churn_events`, `feature_usage`, `tickets`) needed to be validated and cleaned in MySQL before any analysis could begin.
-28
- 
-29
+
 ### Process
-30
 Each of the six datasets was loaded into a dedicated MySQL table via `LOAD DATA INFILE`, then run through a standard cleaning checklist:
-31
- 
-32
+
 - **Null audits** — counted nulls per column using `SUM(CASE WHEN ... IS NULL ...)` across every field.
-33
 - **Duplicate checks** — `GROUP BY <id> HAVING COUNT(*) > 1` on every primary key (`account_id`, `subscription_id`, `usage_id`, `ticket_id`, `churn_event_id`).
-34
 - **Referential integrity** — `LEFT JOIN` checks to confirm every `account_id` referenced in child tables (subscriptions, churn events) actually exists in `accounts`.
-35
 - **Logical validation** — checks such as `end_date < start_date`, negative `seats`/`mrr_amount`/`arr_amount`, and `error_count > usage_count`.
-36
 - **Category sanity checks** — `SELECT DISTINCT` on categorical fields (`plan_tier`, `industry`, `country`, `referral_source`, `priority`, `escalation_flag`, etc.) to catch inconsistent labels.
-37
 - **Date-format repair** — `ravenstack_subscriptions` had `start_date`/`end_date` stored as text in `DD-MM-YYYY` format; these were converted to proper `DATE` columns using `STR_TO_DATE`.
-38
 - **Duplicate resolution** — in `feature_usage`, real duplicate `usage_id`s were found and resolved by re-numbering each occurrence with `ROW_NUMBER() OVER (PARTITION BY usage_id ORDER BY usage_date)` and appending a `-dupN` suffix rather than silently dropping rows.
-39
 - **Data-integrity fix** — rows where `error_count > usage_count` (logically impossible) were corrected by capping `error_count` at `usage_count`.
-40
-41
+
 ### Known data quirks discovered (carried forward and documented for later weeks)
-42
 - Header rows were missing on some exports, requiring manual column naming.
-43
 - Every text field carried a stray `\r` character embedded in the value itself (not just a line ending), requiring stripping before any text-based grouping.
-44
 - `subscriptions_verified_clean.csv` had `end_date` relocated to the last column, with nulls written as the literal string `\N`.
-45
-46
+
 ### Outputs
-47
 - 6 SQL cleaning scripts (`accounts_cleaning.sql`, `subscriptions_cleaning.sql`, `ravenstack_subscriptions_cleaning.sql`, `churn_events_cleaning.sql`, `feature_usage_cleaning.sql`, `tickets_cleaning.sql`)
-48
 - 6 **verified clean CSV files** exported via `SELECT * INTO OUTFILE`, used as the single source of truth for every week that followed:
-49
   - `accounts_verified_clean.csv`
-50
   - `subscriptions_verified_clean.csv`
-51
   - `ravenstack_subscriptions_verified_clean.csv`
-52
   - `churn_events_verified_clean.csv`
-53
   - `feature_usage_verified_clean.csv`
-54
   - `tickets_verified_clean.csv`
-55
-56
+
 Row counts were validated end-to-end: 500 accounts, 5,000 subscriptions, 600 churn events, 25,000 feature usage records, 2,000 tickets.
-57
- 
-58
+
 ---
-59
- 
-60
+
 ## 3. Week 2 — Cohort Retention Analysis
-61
- 
-62
+
 ### Objective
-63
 Group customers into monthly acquisition cohorts (based on subscription start month) and track what percentage of each cohort was still active in each subsequent month, to understand *when* customers actually churn.
-64
- 
-65
+
 ### Process
-66
 - Built a **CohortMonth** field from each account's first subscription date.
-67
 - Cross-tabulated active accounts by `CohortMonth` × `CohortIndex` (months since acquisition) to build a raw retention count matrix across **24 monthly cohorts** (Jan 2023 – Dec 2024).
-68
 - Converted raw counts into a **percentage retention matrix** (`retention_percentage_matrix.csv`), normalizing each cohort against its own starting size (Month 0 = 100%).
-69
 - Calculated an **average retention decay curve** across all cohorts (`monthly_retention.csv`) to find the overall shape of customer drop-off.
-70
 - Ranked cohorts by average retention to identify top- and bottom-performing acquisition months (`top_cohorts.csv`).
-71
 - Flagged high-value accounts for cross-reference with the Week 3 CLTV work (`high_value_customers.csv`).
-72
-73
+
 ### Key Finding
-74
 - **Month 0 retention is consistently strong** across all 24 cohorts (baseline validated).
-75
 - The **steepest decline happens in Month 1–2**, regardless of which month a customer was acquired in — average retention drops roughly 40 points between Month 0 and Month 1.
-76
 - **Retention stabilizes after Month 3** — customers who reach that point are far less likely to churn afterward.
-77
 - No single acquisition cohort significantly outperforms the others — the drop-off pattern is a product-level issue, not a seasonal one.
-78
-79
+
 ### Outputs
-80
 - `cohort_retention_matrix.csv` — raw retention counts, 24 cohorts × up to 23 months
-81
 - `retention_percentage_matrix.csv` — normalized retention percentages
-82
 - `monthly_retention.csv` — average retention rate by months-since-acquisition
-83
 - `top_cohorts.csv` — cohorts ranked by average retention
-84
 - `cohort_retention_analysis.xlsx` — Excel workbook version for stakeholder review
-85
 - Cohort retention heatmap (Blues color scale, annotated with retention %) — built in Week 4's notebook and reused in the final recommendation deck
-86
-87
+
 ---
-88
- 
-89
+
 ## 4. Week 3 — Customer Lifetime Value (CLTV) Analysis
-90
- 
-91
+
 ### Objective
-92
 Convert the retention behavior from Week 2 into a financial metric — quantify how much revenue each customer segment is actually worth over its lifetime.
-93
- 
-94
+
 ### Formula Used
-95
 ```
-96
 CLTV = Average Order Value (AOV) × Purchase Frequency × Average Customer Lifespan
-97
 ```
-98
- 
-99
+
 ### Process
-100
 1. Merged `subscriptions_verified_clean.csv` with `accounts_verified_clean.csv` on `account_id` to attach `referral_source`, `industry`, and `country` to every subscription row.
-101
 2. Calculated **customer lifespan** as days between `start_date` and `end_date` (or today's date for active subscriptions), converted to months (÷ 30.44).
-102
 3. Calculated **purchase frequency** as average subscription count per account, grouped by referral source.
-103
 4. Calculated **AOV** as average MRR per subscription, grouped by referral source and by plan tier.
-104
 5. Combined the three components into a single CLTV figure per segment (by acquisition channel, and separately by plan tier).
-105
 6. Classified all 500 individual accounts into **High / Medium / Low** value tiers using tercile splits (`pd.qcut`, q=3) on total historical MRR contribution — producing a near-even 3-way split (167 / 166 / 167 accounts).
-106
-107
+
 ### Key Results
-108
- 
-109
+
 **CLTV by Acquisition Channel**
-110
- 
-111
+
 | Referral Source | Avg. MRR (USD) | Purchase Freq. | Avg. Lifespan (months) | CLTV (USD) |
-112
 |---|---|---|---|---|
-113
 | Partner | 2,363.71 | 9.96 | ~22 | **~521,808** |
-114
 | Organic | 2,392.06 | 10.26 | ~20.7 | ~513,006 |
-115
 | Other | 2,315.22 | 9.97 | 21.30 | ~500,759 |
-116
 | Ads | 2,146.62 | 10.20 | 21.54 | ~480,343 |
-117
 | Event | 2,095.37 | 9.55 | 21.09 | **~429,866** |
-118
- 
-119
+
 **CLTV by Plan Tier**
-120
- 
-121
+
 | Plan Tier | Avg. MRR (USD) | Avg. Lifespan (months) | CLTV (USD) |
-122
 |---|---|---|---|
-123
 | Enterprise | 4,918 | ~21.3 | **~379,029** |
-124
 | Pro | 1,257 | ~21.4 | ~95,835 |
-125
 | Basic | 474 | ~21.6 | ~34,547 |
-126
- 
-127
+
 *(Note: figures were refined slightly between the Week 3 exploratory notebook and the Week 4 finalized numbers used in the recommendation deck; both versions are included in this repository — see `week3-cltv-analysis-documentation.md` for the full day-by-day breakdown and formula derivation.)*
-128
- 
-129
+
 ### Key Findings
-130
 - **Partner-referred customers generate the highest lifetime value**, driven by longer retention (~22 months) rather than higher spend — organic customers actually have a slightly higher purchase frequency and AOV.
-131
 - **Event-acquired customers have the lowest CLTV**, mainly due to shorter average lifespan.
-132
 - **Plan tier is the dominant driver of CLTV, not retention.** Average lifespan is nearly identical across all three tiers (~21 months), so the ~11x CLTV gap between Enterprise and Basic is almost entirely explained by MRR (subscription price), not how long customers stay.
-133
 - Customer value segments (High/Medium/Low) split almost perfectly evenly, confirming the classification is statistically sound for use in targeting.
-134
-135
+
 ### Outputs
-136
 - `account_level_cltv.csv` — per-account CLTV and value segment
-137
 - `cltv_by_channel.csv` / `cltv_by_channel.png` — CLTV by acquisition channel (table + bar chart)
-138
 - `cltv_by_plan_tier.csv` — CLTV by plan tier
-139
 - `mrr-vs-lifespan.png` — scatter plot of MRR vs. lifespan, colored by plan tier
-140
 - `avg-mrr-heatmap.png` — MRR heatmap by plan tier × acquisition channel (identifies Enterprise-via-Partner as the single highest-value combination)
-141
 - `week3-cltv-analysis.ipynb` — full analysis notebook
-142
 - `week3-cltv-analysis-documentation.md` — detailed day-by-day methodology write-up
-143
-144
+
 ---
-145
- 
-146
+
 ## 5. Week 4 — Dashboard Build & Business Recommendations
-147
- 
-148
+
 ### Objective
-149
 Turn three weeks of analysis into (a) a live, interactive support operations dashboard for ongoing monitoring, and (b) a business recommendation deck for stakeholders.
-150
- 
-151
+
 ### 5.1 Power BI Support Analytics Dashboard
-152
- 
-153
+
 Built in Power BI (`Support Analytics Dashboard.pbix`, exported as `.png` / `.pdf`) using the cleaned tickets, accounts, and subscriptions tables as the data model. The dashboard tracks:
-154
- 
-155
+
 - **Total tickets analyzed:** 2,000
-156
 - **Average resolution time:** 35.9 hours
-157
 - **Average first response time:** 88.5 minutes
-158
 - **Average satisfaction score:** 2.34 / 5
-159
 - Ticket volume, resolution time, and satisfaction broken out **by priority level** (Urgent / High / Medium / Low) and by month
-160
 - Escalation rate tracking
-161
-162
+
 This is designed as a living operational dashboard — refreshable as new ticket data comes in — rather than a one-time report.
-163
- 
-164
+
 ### 5.2 Consolidated Analysis Notebook (`complete-week4.ipynb`)
-165
- 
-166
+
 This notebook pulls together every prior week's output (`master_subscription_data.csv`, `retention_percentage_matrix.csv`, `high_value_customers.csv`, `top_cohorts.csv`, `monthly_retention.csv`) and produces the final polished visuals used in the recommendation deck:
-167
- 
-168
+
 1. **Cohort Retention Heatmap** — all 24 cohorts × retention period, annotated with percentages
-169
 2. **Average Retention Decay Curve** — with the Month 0→1 drop annotated directly on the chart
-170
 3. **Top 10 Cohorts Bar Chart** — ranked by average retention
-171
 4. **CLTV by Plan Tier + CLTV vs. Purchase Frequency scatter** — two-panel comparison
-172
 5. **Retention Rate by Plan Tier and by Industry** — side-by-side bar charts
-173
-174
+
 ### 5.3 Business Recommendations Deck (`RavenStack_Business_Recommendations.pptx`)
-175
- 
-176
+
 A 14-slide stakeholder presentation synthesizing all four weeks of findings into four concrete recommendations. Headline numbers used throughout:
-177
- 
-178
+
 - **Total MRR:** $11.3M across all subscriptions (avg. $2,268/subscription)
-179
 - **Enterprise concentration risk:** Enterprise accounts generate **74.7% of all MRR** despite being a minority of accounts — a concentration that is both an opportunity and a retention risk
-180
 - **Support quality gap:** urgent tickets resolve in 34.57 hrs vs. 36.35 hrs for low-priority tickets — a statistically negligible 1.8-hour difference, meaning there is effectively no working SLA today
-181
 - **Churn drivers:** Features (114 cases), Support (104), and Budget (104) together account for 53.7% of all 600 churn events — and the "Support" churn reason lines up directly with the 2.34/5 satisfaction score from the ticket data, confirming the same problem shows up independently in two different datasets
-182
-183
+
 #### Recommendation 1 — Shift acquisition budget toward the Partner channel
-184
 Partner CLTV ($521,808) beats Event CLTV ($429,866) by ~21% per customer, driven by retention length, not spend. Action: audit current channel budget allocation against CLTV-per-channel and reallocate toward partner/affiliate development where budget is currently skewed toward lower-CLTV channels (Event, Ads).
-185
- 
-186
+
 #### Recommendation 2 — Build an aggressive Pro-to-Enterprise upsell program
-187
 Since lifespan is nearly flat across tiers (~21 months), retention campaigns cannot close the CLTV gap — only tier upgrades can. Moving one customer from Pro to Enterprise adds an estimated **$283,000** in lifetime value. Action: target Pro accounts with high seat counts and usage at capacity for a guided Enterprise trial.
-188
- 
-189
+
 #### Recommendation 3 — Implement priority-based SLAs in support
-190
 There is currently no meaningful difference in resolution time by ticket priority. Action: introduce explicit SLA targets (e.g., Urgent: <2 hr first response / <8 hr resolution; Low: <24 hr / <72 hr) so that Enterprise and Urgent tickets are actually treated as priority.
-191
- 
-192
+
 #### Recommendation 4 — Intercept churn before it happens
-193
 Four concrete tactics, all evidence-based:
-194
 1. Launch a Month-1 onboarding sequence, timed to hit before the steepest retention drop (Month 1–2).
-195
 2. Fix product feature gaps before considering price-based retention tactics (features is the #1 churn reason).
-196
 3. Use support ticket escalations/low satisfaction as an early-warning signal for proactive Customer Success outreach.
-197
 4. Give the 167 High-value accounts (top CLTV tercile) a dedicated retention track — proactive reviews, executive sponsorship, priority support routing.
-198
-199
+
 ### Outputs
-200
 - `Support Analytics Dashboard.pbix` / `.pdf` / `.png` — live Power BI dashboard
-201
 - `complete-week4.ipynb` — consolidated visualization notebook
-202
 - `RavenStack_Business_Recommendations.pptx` — 14-slide stakeholder recommendation deck
-203
 - Supporting charts: `cohort_retention_heatmap_final.png`, `retention_decay_curve.png`, `top_cohorts_bar.png`, `cltv_analysis.png`, `retention_by_segment.png`
-204
-205
+
 ---
-206
- 
-207
+
 ## 6. Overall Business Value
-208
- 
-209
+
 Taken together, the four weeks form a single analytical pipeline: **clean data → understand retention behavior → quantify that behavior in dollar terms (CLTV) → operationalize it into a live dashboard and four specific, numbers-backed recommendations.**
-210
- 
-211
+
 This gives RavenStack's leadership:
-212
 - A defensible basis for setting **maximum acceptable Customer Acquisition Cost (CAC) by channel**, using real CLTV figures rather than assumptions.
-213
 - A ranked list of **which customer segments to prioritize** for retention and upsell investment.
-214
 - A **live support operations dashboard** to monitor whether SLA and satisfaction improvements are actually working.
-215
 - Four recommendations that are each traceable back to a specific number in the underlying 500-account, 5,000-subscription, 2,000-ticket, 600-churn-event dataset — not general SaaS best practices, but findings specific to RavenStack's own data.
-216
-217
+
 ---
-218
- 
-219
+
 ## 7. Repository / File Index
-220
- 
-221
+
 ```
-222
 ├── README.md                                    ← this file
-223
 ├── csv-cleaning-with-sql/
-224
 │   ├── SQL files/                                ← 6 cleaning scripts (Week 1)
-225
 │   ├── Cleaned files from week 1 work/            ← intermediate cleaned CSVs
-226
 │   └── Verified cleaned files/                    ← final verified CSVs (source of truth for Weeks 2–4)
-227
 ├── Week 2 (Cohort Retention Matrix)/
-228
 │   └── cohort/retention matrices, Excel workbook
-229
 ├── using-datasets-week3-work/
-230
 │   ├── complete-week4.ipynb                       ← consolidated Week 4 visualization notebook
-231
 │   ├── cohort_retention_matrix.csv / monthly_retention.csv / cohort_retention_analysis.xlsx
-232
 │   └── account_level_cltv.csv, cltv_by_channel.csv, cltv_by_plan_tier.csv + charts
-233
 ├── week3-cltv-analysis/
-234
 │   ├── week3-cltv-analysis.ipynb                  ← Week 3 CLTV notebook
-235
 │   ├── week3-cltv-analysis-documentation.md       ← detailed day-by-day CLTV write-up
-236
 │   └── supporting charts (cltv_by_channel, mrr-vs-lifespan, avg-mrr-heatmap)
-237
 ├── Support Analytics Dashboard.pbix / .pdf / .png  ← Week 4 Power BI dashboard
-238
 └── RavenStack_Business_Recommendations.pptx        ← Week 4 final stakeholder deck
-239
 ```
-240
- 
-
-
-
-

@@ -261,14 +261,77 @@ Result:
 
 ---
 
-## Next Steps (Week 4)
+# Week 4 – Customer Churn Dashboard & Visualization
+Project Title
 
-* Calculate Customer Lifetime Value (CLTV).
-* Build business dashboards and visualizations.
-* Generate retention and churn insights.
-* Develop strategic business recommendations.
-* Finalize project documentation and presentation.
+# Week 4: Customer Churn Analytics Dashboard using Power BI
 
+## Objective
+
+The objective of Week 4 was to transform the cleaned and validated SaaS customer data into an interactive Power BI dashboard. The dashboard provides insights into customer churn, highlights high-risk customer segments, and supports data-driven business decisions through meaningful visualizations and KPIs.
+
+## Datasets Used
+* churn_master_data.csv
+* churn_kpi_summary.csv
+* churn_segment_analysis.csv
+
+## Tools Used
+* Python (Pandas)
+* Jupyter Notebook
+* Power BI
+* Git & GitHub
+
+## Work Completed
+
+### 1. Prepared Dashboard Dataset
+* Used the validated master dataset for dashboard development.
+* Verified data consistency before importing into Power BI.
+### 2. Created KPI Cards
+* Developed KPI cards to display:
+* Total Customers
+* Active Customers
+* Churned Customers
+* Churn Rate
+* Active Rate
+### 3. Developed Churn Visualizations
+* Created the following visuals:
+* Monthly Churn Trend (Line Chart)
+* Churn by Plan Tier (Bar Chart)
+* Churn by Industry (Bar Chart)
+### 4. Added Interactive Filters
+* Implemented slicers for:
+* Country
+* Plan Tier
+* Industry
+These filters allow users to explore churn across different customer segments.
+### 5. Added Business Insights
+* Included a Key Insights section summarizing important findings from the analysis to support business decision-making.
+
+### Key Results
+* KPI	Value
+* Total Customers	500
+* Active Customers	148
+* Churned Customers	352
+* Churn Rate	70.40%
+* Active Rate	29.60%
+
+### Business Insights
+* Overall churn rate is 70.40%.
+* The Pro plan recorded the highest number of churned customers.
+* The DevTools industry showed the highest churn among industries.
+* Monthly churn trends help identify periods with increased customer loss.
+* Interactive filters enable deeper analysis across customer segments.
+
+### Deliverables
+* churn_dashboard.pbix
+* Customer_Churn_Analytics_Dashboard.pdf
+* churn_master_data.csv
+* churn_kpi_summary.csv
+* churn_segment_analysis.csv
+
+## Conclusion
+
+Week 4 focused on presenting churn analysis through an interactive Power BI dashboard. By combining KPI cards, trend analysis, customer segmentation, and interactive filters, the dashboard provides stakeholders with a clear view of customer behavior and churn patterns. The final solution enables data-driven decisions to improve customer retention and supports effective business reporting.
 ---
 
 ## Team
@@ -279,8 +342,8 @@ Result:
 
 ## Status
 
-✅ Week 3 Completed Successfully (22 Jun – 28 Jun)
+✅  Successfully Completed all 4 week work.
 
 
-🚀 Ready for Week 4: Visualization and Strategic Insights
+
 
